@@ -3,6 +3,8 @@ package br.gov.sp.fatec.bank.accounts.service;
 import br.gov.sp.fatec.bank.accounts.model.Account;
 import br.gov.sp.fatec.bank.accounts.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,6 +21,7 @@ public class AccountService {
 		return this.accountRepository.findByNumber(number);
 	}
 
+	@PreAuthorize("hasAnyRole('USER')")
 	public Account newAccount(Long clientId) {
 		if(clientId == null || clientId <= 0l) {
 			return null;

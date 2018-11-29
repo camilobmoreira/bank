@@ -3,6 +3,7 @@
 target/*
 accounts/target/*
 clients/target/*
+users/target/*
 
 # Log file
 *.log
@@ -26,3 +27,4 @@ clients/target/*
 hs_err_pid*
 
 .idea/*
+*.iml

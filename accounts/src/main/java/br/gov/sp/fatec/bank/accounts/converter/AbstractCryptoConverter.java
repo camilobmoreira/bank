@@ -10,7 +10,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
-import static com.example.spring.data.jpa.encryption.converters.KeyProperty.DATABASE_ENCRYPTION_KEY;
+
+import static br.gov.sp.fatec.bank.accounts.converter.KeyProperty.DATABASE_ENCRYPTION_KEY;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 abstract class AbstractCryptoConverter<T> implements AttributeConverter<T, String> {
