@@ -10,5 +10,5 @@ import java.util.List;
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
 	Client findBySsn(String ssn);
-	List<Client> findByName(String name);
+	List<Client> findByNameContainingIgnoreCase(String name);
 }
