@@ -1,5 +1,8 @@
 package br.gov.sp.fatec.bank.accounts.model;
 
+import br.gov.sp.fatec.bank.accounts.converter.DoubleCryptoConverter;
+import br.gov.sp.fatec.bank.accounts.converter.LongCryptoConverter;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,12 +15,15 @@ public class Account {
 	private Long id;
 
 	@Column(name = "ACC_NUMBER")
+	@Convert(converter = LongCryptoConverter.class)
 	private Long number;
 
 	@Column(name = "ACC_BALANCE")
+	@Convert(converter = DoubleCryptoConverter.class)
 	private Double balance;
 
 	@Column(name = "ACC_CLIENT_ID")
+	@Convert(converter = LongCryptoConverter.class)
 	private Long clientId;
 
 	public Long getId() {

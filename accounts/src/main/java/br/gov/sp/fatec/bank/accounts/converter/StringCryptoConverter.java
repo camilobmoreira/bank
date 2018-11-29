@@ -1,9 +1,6 @@
 package br.gov.sp.fatec.bank.accounts.converter;
 
 import javax.persistence.Converter;
-
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
-
 @Converter
 public class StringCryptoConverter extends AbstractCryptoConverter<String> {
 
@@ -17,7 +14,7 @@ public class StringCryptoConverter extends AbstractCryptoConverter<String> {
 
     @Override
     boolean isNotNullOrEmpty(String attribute) {
-        return isNotEmpty(attribute);
+        return !attribute.isEmpty();
     }
 
     @Override
