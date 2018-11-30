@@ -32,15 +32,15 @@ public class TokenAuthenticationService {
 		String token = request.getHeader(HEADER_STRING);
 
 		if (token != null) {
-			String user = Jwts.parser()
+			String usrStr = Jwts.parser()
 					.setSigningKey(SECRET)
 					.parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
 					.getBody()
 					.getSubject();
 
-			if (user != null) {
-				User usuario = new Gson().fromJson(user, User.class);
-				return new UsernamePasswordAuthenticationToken(usuario.getUsername(), null, usuario.getAuthorities());
+			if (usrStr != null) {
+				User user = new Gson().fromJson(usrStr, User.class);
+				return new UsernamePasswordAuthenticationToken(user.getUsername(), null, user.getAuthorities());
 			}
 		}
 		return null;

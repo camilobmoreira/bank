@@ -5,10 +5,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="USR_USER")
@@ -24,6 +23,11 @@ public class User implements UserDetails {
 	@Column(name="USR_PASSWORD")
 	private String password;
 
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "usa_user_authority",
+			joinColumns = { @JoinColumn(name = "usr_id") },
+			inverseJoinColumns = { @JoinColumn(name = "aut_id") })
+	private List<Authority> authorities;
 
 	public Long getId() {
 		return id;
@@ -62,8 +66,12 @@ public class User implements UserDetails {
 	}
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+	public List<? extends GrantedAuthority> getAuthorities() {
+		return this.authorities;
+	}
+
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
 	}
 
 	public String getPassword() {

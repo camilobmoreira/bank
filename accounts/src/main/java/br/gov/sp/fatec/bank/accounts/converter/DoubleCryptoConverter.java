@@ -12,7 +12,7 @@ public class DoubleCryptoConverter extends AbstractCryptoConverter<Double> {
 
     @Override
     boolean isNotNullOrEmpty(Double attribute) {
-        return attribute == null;
+        return attribute != null;
     }
 
     @Override
@@ -22,6 +22,6 @@ public class DoubleCryptoConverter extends AbstractCryptoConverter<Double> {
 
     @Override
     String entityAttributeToString(Double attribute) {
-        return attribute.toString();
+        return attribute == null ? "0.0" : attribute.toString();
     }
 }

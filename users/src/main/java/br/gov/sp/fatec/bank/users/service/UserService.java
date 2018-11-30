@@ -3,16 +3,20 @@ package br.gov.sp.fatec.bank.users.service;
 import br.gov.sp.fatec.bank.users.model.User;
 import br.gov.sp.fatec.bank.users.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserService implements UserDetailsService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@PreAuthorize("hasRole('ROLE_HIGH_MANAGER')")
 	public User newUser(String username, String password) {
 		if(username.trim().isEmpty()) {
 			throw new RuntimeException("Username can not be empty.");
@@ -44,6 +48,7 @@ public class UserService implements UserDetailsService {
 		}
 	}
 
+	@PreAuthorize("hasRole('ROLE_HIGH_MANAGER')")
 	public User findByUsername(String username) {
 		return this.userRepository.findByUsername(username);
 	}

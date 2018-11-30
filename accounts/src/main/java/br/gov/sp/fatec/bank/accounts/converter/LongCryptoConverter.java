@@ -25,6 +25,6 @@ public class LongCryptoConverter extends AbstractCryptoConverter<Long> {
 
     @Override
     String entityAttributeToString(Long attribute) {
-        return attribute.toString();
+        return attribute == null ? "0" : attribute.toString();
     }
 }
