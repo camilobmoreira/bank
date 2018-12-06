@@ -28,6 +28,7 @@ public class UserController {
 		if(user == null || user.getUsername().isEmpty() || user.getPassword().isEmpty()) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-		return ResponseEntity.ok(this.userService.newUser(user.getUsername(), user.getPassword()));
+		User newUser = this.userService.newUser(user);
+		return ResponseEntity.ok(newUser);
 	}
 }

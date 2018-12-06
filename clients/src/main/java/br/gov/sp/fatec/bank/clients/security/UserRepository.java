@@ -1,4 +1,4 @@
-package br.gov.sp.fatec.bank.accounts.security;
+package br.gov.sp.fatec.bank.clients.security;
 
 import br.gov.sp.fatec.bank.users.model.User;
 import org.springframework.context.annotation.Primary;
